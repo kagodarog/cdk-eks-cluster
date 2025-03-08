@@ -1,0 +1,15 @@
+attrs
+aws-cdk-lib
+aws-cdk.asset-awscli-v1
+aws-cdk.asset-node-proxy-agent-v6
+aws-cdk.cloud-assembly-schema
+cattrs
+constructs
+exceptiongroup
+importlib_resources
+jsii
+publication
+python-dateutil
+six
+typeguard
+typing_extensions

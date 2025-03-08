@@ -1,0 +1,5 @@
+aws-cdk-lib
+constructs
+aws-cdk.lambda-layer-kubectl-v32
+pyyaml
+cdk-ecr-deployment==3.0.99
