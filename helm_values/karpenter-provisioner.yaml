@@ -7,6 +7,9 @@ spec:
   template:
     spec:
       requirements:
+        - key: "karpenter.k8s.aws/instance-category"
+          operator: In
+          values: ["c", "m"]
         - key: kubernetes.io/arch
           operator: In
           values: ["amd64"]
@@ -15,10 +18,10 @@ spec:
           values: ["linux"]
         - key: karpenter.sh/capacity-type
           operator: In
-          values: ["on-spot"]
-        - key: karpenter.k8s.aws/instance-category
+          values: ["spot"]
+        - key: "karpenter.k8s.aws/instance-family"
           operator: In
-          values: ["m", "c"]
+          values: ["m5","m5d","m4"]
         - key: karpenter.k8s.aws/instance-generation
           operator: Gt
           values: ["2"]
@@ -38,12 +41,12 @@ kind: EC2NodeClass
 metadata:
   name: default
 spec:
-  role: "EksStack-MyEksClusterkarpenterRole1A9DBFBC-Gpnjma1PocOP" # replace with your cluster name
+  role: "arn:aws:iam::146256358142:role/EksStack-CustomNodegroupRole69D93BD3-zeaJDCCBoit5" # replace with your cluster name
   amiSelectorTerms:
-    - alias: "al2023@${ALIAS_VERSION}"
+    - alias: "al2023@v20250228"
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: my-eks-cluster # replace with your cluster name
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: my-eks-cluster # replace with your cluster name
+        aws:eks:cluster-name: my-eks-cluster # replace with your cluster name
