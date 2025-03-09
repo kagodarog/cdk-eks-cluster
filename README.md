@@ -1,9 +1,17 @@
 
-# Welcome to your CDK Python project!
+# CDK Python project for provisioning an EKS cluster
 
-This is a blank project for CDK development with Python.
+The projects setups EKS cluster with latest kubernetes version 1.32 at the time of writing. It bootstraps the cluster with the following services and ready IAM roles for the services to use.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+- A managed nodegroup with 2 m5.large instances.
+- Pod identity for service accounts.
+- Karpenter for autoscaling.
+- EBS CSI driver for storage.
+- AWS Load Balancer Controller for ingress.
+- ArgoCD for GitOps.
+- Argocd application for deploying a sample application.
+- ArgoImageUpdater for updating the application image.
+
 
 This project is set up like a standard Python project.  The initialization
 process also creates a virtualenv within this project, stored under the `.venv`
