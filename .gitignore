@@ -8,7 +8,3 @@ __pycache__
 # CDK asset staging directory
 .cdk.staging
 cdk.out
-
-**/repo-secret.yaml
-**/argocd-notifications-secret.yaml
-

@@ -68,7 +68,7 @@ class EksStack(cdk.Stack):
             kubectl_layer=KubectlV32Layer(self, "KubectlLayer"),
             default_capacity=0,
             version=eks.KubernetesVersion.V1_32,
-            # masters_role=cluster_admin_role,
+            #masters_role=cluster_admin_role,
             authentication_mode=eks.AuthenticationMode.API_AND_CONFIG_MAP,
             alb_controller=eks.AlbControllerOptions(
                 version=eks.AlbControllerVersion.V2_8_2
@@ -234,7 +234,7 @@ class EksStack(cdk.Stack):
         )
         cluster.grant_access(
             "clusterAdminAccess",
-            "arn:aws:iam::146256358142:user/roger",
+            "arn:aws:iam::XXXXXXXXXXXX:user/XXXXXXXXXXXX",
             [access_entry1],
         )
 
@@ -475,7 +475,7 @@ class EksStack(cdk.Stack):
         )
 
         # karpenter helm chart.
-        karpenter_helm = cluster.add_helm_chart(
+        cluster.add_helm_chart(
             "karpenter",
             chart="karpenter",
             repository="oci://public.ecr.aws/karpenter/karpenter",
@@ -504,8 +504,6 @@ class EksStack(cdk.Stack):
         # Tagging the private subnets for karpenter resources
         for subnet in vpc.private_subnets:
             cdk.Tags.of(subnet).add("karpenter.sh/discovery", cluster.cluster_name)
-
-        # karpenter_sa.node.add_dependency(karpenter_namespace)
 
         # helm chart values
         karpenter_provisioner_file: Path = (

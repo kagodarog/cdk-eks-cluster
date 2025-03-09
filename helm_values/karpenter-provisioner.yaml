@@ -41,12 +41,12 @@ kind: EC2NodeClass
 metadata:
   name: default
 spec:
-  role: "arn:aws:iam::146256358142:role/EksStack-CustomNodegroupRole69D93BD3-zeaJDCCBoit5" # replace with your cluster name
+  role: "Karpenter-${CLUSTER_NAME}" # replace with your cluster name
   amiSelectorTerms:
     - alias: "al2023@v20250228"
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: my-eks-cluster # replace with your cluster name
+        karpenter.sh/discovery: ${CLUSTER_NAME} # replace with your cluster name
   securityGroupSelectorTerms:
     - tags:
-        aws:eks:cluster-name: my-eks-cluster # replace with your cluster name
+        aws:eks:cluster-name: ${CLUSTER_NAME} # replace with your cluster name
